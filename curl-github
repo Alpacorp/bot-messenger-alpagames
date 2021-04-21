@@ -1,0 +1,52 @@
+// Configurar botón de inicio o Empezar en el chat
+
+curl -X POST -H "Content-Type: application/json" -d '{
+    "get_started": {"payload":
+        "GET_STARTED_ALPAGAMES"
+    }
+}' "https://graph.facebook.com/v2.6/me/messenger_profile?access_token=??"
+
+
+curl -X POST -H "Content-Type: application/json" -d '{
+    "greeting": [
+        {
+            "locale": "default",
+            "text": "Hola {{user_first_name}}, soy Alpagames, estoy para recomendarte los mejores juegos."
+        },
+        {
+            "locale": "en_US",
+            "text": "Hi {{user_first_name}}"
+        }
+    ]
+}' "https://graph.facebook.com/v2.6/me/messenger_profile?access_token=??"
+
+
+// Menú de opciones
+
+curl -X POST -H "Content-Type: application/json" -d '{
+    "persistent_menu": [
+        {
+            "locale": "default",
+            "composer_input_disabled": false,
+            "call_to_actions":[
+                {
+                    "title": "Acerca",
+                    "type": "postback",
+                    "payload": "ABOUT_PAYLOAD"
+                },
+                {
+                    "title": "Juegos",
+                    "type": "postback",
+                    "payload": "GAMES_PAYLOAD"
+                },
+                {
+                    "type": "web_url",
+                    "title": "Visita el sitio web",
+                    "url": "https://www.servientrega.com",
+                    "webview_height_ratio": "full"
+                }
+            ]
+        }
+    ]
+}' "https://graph.facebook.com/v2.6/me/messenger_profile?access_token=??"
+
